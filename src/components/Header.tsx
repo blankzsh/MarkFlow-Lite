@@ -7,7 +7,8 @@ import {
   FaColumns,
   FaFileExport,
   FaShareAlt,
-  FaGithub
+  FaGithub,
+  FaCloud
 } from 'react-icons/fa'
 
 interface HeaderProps {
@@ -15,13 +16,15 @@ interface HeaderProps {
   setIsDarkMode: (isDark: boolean) => void
   activeView: 'editor' | 'preview' | 'split'
   setActiveView: (view: 'editor' | 'preview' | 'split') => void
+  onExport: (format: 'html' | 'md' | 'pdf') => void
 }
 
 const Header: React.FC<HeaderProps> = ({ 
   isDarkMode, 
   setIsDarkMode, 
   activeView, 
-  setActiveView 
+  setActiveView,
+  onExport
 }) => {
   return (
     <header className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-4 py-2 flex items-center justify-between">
@@ -57,12 +60,48 @@ const Header: React.FC<HeaderProps> = ({
           </button>
         </div>
         
-        <button 
-          className="p-2 rounded-md bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
-          title="导出"
-        >
-          <FaFileExport />
-        </button>
+        <div className="relative group">
+          <button 
+            className="p-2 rounded-md bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+            title="导出"
+          >
+            <FaFileExport />
+          </button>
+          <div className="absolute right-0 mt-1 w-32 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-md shadow-lg z-10 hidden group-hover:block">
+            <button 
+              className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+              onClick={() => onExport('html')}
+            >
+              导出为 HTML
+            </button>
+            <button 
+              className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+              onClick={() => onExport('md')}
+            >
+              导出为 Markdown
+            </button>
+            <button 
+              className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+              onClick={() => onExport('pdf')}
+            >
+              导出为 PDF
+            </button>
+          </div>
+        </div>
+        
+        <div className="relative group">
+          <button 
+            className="p-2 rounded-md bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+            title="云存储"
+          >
+            <FaCloud />
+          </button>
+          <div className="absolute right-0 mt-1 w-32 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-md shadow-lg z-10 hidden group-hover:block">
+            <div className="block w-full text-left px-4 py-2 text-sm text-slate-500 dark:text-slate-400">
+              请在侧边栏中连接
+            </div>
+          </div>
+        </div>
         
         <button 
           className="p-2 rounded-md bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"

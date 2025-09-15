@@ -11,7 +11,8 @@ MarkFlow Lite 是一个完全运行在浏览器中的纯前端 Markdown 编辑�
 - ✍️ **实时编辑** - 支持标准 Markdown 语法（含表格、代码块、列表等）
 - 👁️ **实时预览** - 边写边看，支持数学公式和流程图渲染
 - 💾 **本地存储** - 自动保存草稿到浏览器本地存储
-- 📄 **文件导出** - 支持导出为 PDF、HTML 等格式
+- 📄 **文件导出** - 支持导出为 PDF、HTML、Markdown 等格式
+- 📂 **文件管理** - 支持新建文档、打开本地 Markdown 文件
 - 🔗 **内容分享** - 生成唯一链接，内容可通过 URL 参数共享
 - 🎨 **主题切换** - 提供深色/浅色主题，适配不同阅读环境
 - ⌨️ **快捷操作** - 支持常用快捷键（加粗、斜体、标题插入等）
@@ -27,7 +28,7 @@ MarkFlow Lite 是一个完全运行在浏览器中的纯前端 Markdown 编辑�
 
 ```bash
 # 克隆项目
-git clone https://github.com/blankzsh/markflow_lite.git
+git clone https://github.com/blankzsh/markflow-lite.git
 
 # 进入项目目录
 cd markflow-lite
@@ -68,6 +69,20 @@ npm run preview
 - `Ctrl + B` - 粗体
 - `Ctrl + I` - 斜体
 - `Ctrl + K` - 插入链接
+
+### 云存储集成
+
+MarkFlow Lite 支持多种云存储后端：
+
+1. **AWS S3** - 连接到 S3 存储桶进行文件管理
+2. **WebDAV** - 连接到任何支持 WebDAV 的服务器
+3. **本地存储** - 浏览器本地存储（默认）
+
+通过文件资源管理器，您可以：
+- 连接和断开云存储服务
+- 浏览远程文件夹结构
+- 创建、编辑、删除远程文件
+- 同步本地和远程文件
 
 ### 支持的语法
 
