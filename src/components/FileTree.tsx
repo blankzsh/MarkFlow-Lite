@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { FaPlus, FaFolderOpen, FaFileImport, FaFile, FaFolder, FaChevronRight, FaChevronDown, FaCloud, FaServer, FaDesktop, FaSync, FaTrash, FaEdit, FaPlug, FaCircle } from 'react-icons/fa'
 
 interface FileInfo {
-  id: string
   name: string
   type: 'file' | 'folder'
   path: string
@@ -49,33 +48,23 @@ const FileTree: React.FC<FileTreeProps> = ({
 }) => {
   // 获取根级别的项目
   const getRootItems = () => {
-    return files.filter(f => f.path.split('/').length === 2)
-  }
-
-  // 获取子项目
-  const getChildItems = (parentPath: string) => {
-    return files.filter(f => 
-      f.path.startsWith(parentPath + '/') && 
-      f.path.split('/').length === parentPath.split('/').length + 1
-    )
+    return files
   }
 
   // 渲染文件树节点
   const renderTreeNode = (item: FileInfo, depth: number = 0) => {
-    const isExpanded = expandedFolders[item.id]
+    const isExpanded = expandedFolders[item.path]
     
     return (
-      <div key={item.id}>
+      <div key={item.path}>
         <div 
-          className={`flex items-center py-1.5 px-2 hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer rounded mx-1 transition-colors duration-150 ${
-            item.type === 'file' ? 'pl-' + (depth * 4 + 6) : ''
-          }`}
+          className={`flex items-center py-1.5 px-2 hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer rounded mx-1 transition-colors duration-150`}
           style={{ paddingLeft: `${depth * 20 + 8}px` }}
           onClick={() => {
             if (item.type === 'file') {
               onFileSelect(item)
             } else {
-              onFolderToggle(item.id)
+              onFolderToggle(item.path)
             }
           }}
         >
@@ -84,7 +73,7 @@ const FileTree: React.FC<FileTreeProps> = ({
               className="mr-1.5 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors duration-150"
               onClick={(e) => {
                 e.stopPropagation()
-                onFolderToggle(item.id)
+                onFolderToggle(item.path)
               }}
             >
               {isExpanded ? <FaChevronDown size={10} /> : <FaChevronRight size={10} />}
@@ -102,12 +91,12 @@ const FileTree: React.FC<FileTreeProps> = ({
           <span className="truncate flex-grow text-sm">{item.name}</span>
           
           {item.type === 'file' && (
-            <div className="flex space-x-1 opacity-0 hover:opacity-100 transition-opacity duration-200">
+            <div className="flex space-x-1">
               <button 
                 className="p-1 text-slate-500 hover:text-red-500 dark:hover:text-red-400 rounded-full hover:bg-red-100 dark:hover:bg-red-900/50"
                 onClick={(e) => {
                   e.stopPropagation()
-                  onDelete(item.id, 'file')
+                  onDelete(item.path, 'file')
                 }}
               >
                 <FaTrash size={10} />
@@ -119,31 +108,11 @@ const FileTree: React.FC<FileTreeProps> = ({
         {item.type === 'folder' && isExpanded && (
           <div className="relative">
             {/* 连接线 */}
-            {getChildItems(item.path).length > 0 && (
-              <div 
-                className="absolute border-l border-slate-300 dark:border-slate-600 h-full" 
-                style={{ left: `${depth * 20 + 18}px` }}
-              ></div>
-            )}
-            {getChildItems(item.path).map((child, index, arr) => {
-              const isLast = index === arr.length - 1;
-              return (
-                <div key={child.id} className="relative">
-                  {/* 节点连接线 */}
-                  <div 
-                    className="absolute border-t border-slate-300 dark:border-slate-600 w-3" 
-                    style={{ left: `${depth * 20 + 18}px`, top: '18px' }}
-                  ></div>
-                  {isLast && (
-                    <div 
-                      className="absolute border-l border-slate-300 dark:border-slate-600 h-5" 
-                      style={{ left: `${depth * 20 + 18}px`, top: '0', height: '18px' }}
-                    ></div>
-                  )}
-                  {renderTreeNode(child, depth + 1)}
-                </div>
-              );
-            })}
+            <div 
+              className="absolute border-l border-slate-300 dark:border-slate-600 h-full" 
+              style={{ left: `${depth * 20 + 18}px` }}
+            ></div>
+            {renderTreeNode({...item, type: 'folder'}, depth + 1)}
           </div>
         )}
       </div>
@@ -187,9 +156,14 @@ const FileTree: React.FC<FileTreeProps> = ({
           <span>本地文件</span>
         </div>
         
-        {getRootItems().filter(f => f.type === 'folder').map(folder => renderTreeNode(folder))}
-        
-        {getRootItems().filter(f => f.type === 'file').map(file => renderTreeNode(file))}
+        {files.length === 0 ? (
+          <div className="px-3 py-4 text-center text-slate-500 dark:text-slate-400 text-sm">
+            <p>暂无文件</p>
+            <p className="mt-1 text-xs">拖拽文件到这里或点击新建按钮</p>
+          </div>
+        ) : (
+          getRootItems().map(file => renderTreeNode(file))
+        )}
         
         {/* 云存储连接 */}
         <div className="px-3 py-2 mt-3 flex items-center text-slate-700 dark:text-slate-300 text-xs font-semibold uppercase tracking-wider">

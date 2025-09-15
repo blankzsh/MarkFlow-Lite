@@ -8,7 +8,7 @@ import {
   FaFileExport,
   FaShareAlt,
   FaGithub,
-  FaCloud
+  FaCopy
 } from 'react-icons/fa'
 
 interface HeaderProps {
@@ -17,6 +17,8 @@ interface HeaderProps {
   activeView: 'editor' | 'preview' | 'split'
   setActiveView: (view: 'editor' | 'preview' | 'split') => void
   onExport: (format: 'html' | 'md' | 'pdf') => void
+  onClearLocalFiles?: () => void
+  onCopyMarkdown?: () => void
 }
 
 const Header: React.FC<HeaderProps> = ({ 
@@ -24,7 +26,9 @@ const Header: React.FC<HeaderProps> = ({
   setIsDarkMode, 
   activeView, 
   setActiveView,
-  onExport
+  onExport,
+  onClearLocalFiles,
+  onCopyMarkdown
 }) => {
   return (
     <header className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-4 py-2 flex items-center justify-between">
@@ -80,26 +84,28 @@ const Header: React.FC<HeaderProps> = ({
             >
               导出为 Markdown
             </button>
+            {onCopyMarkdown && (
+              <button 
+                className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+                onClick={onCopyMarkdown}
+              >
+                复制 Markdown
+              </button>
+            )}
             <button 
               className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
               onClick={() => onExport('pdf')}
             >
               导出为 PDF
             </button>
-          </div>
-        </div>
-        
-        <div className="relative group">
-          <button 
-            className="p-2 rounded-md bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
-            title="云存储"
-          >
-            <FaCloud />
-          </button>
-          <div className="absolute right-0 mt-1 w-32 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-md shadow-lg z-10 hidden group-hover:block">
-            <div className="block w-full text-left px-4 py-2 text-sm text-slate-500 dark:text-slate-400">
-              请在侧边栏中连接
-            </div>
+            {onClearLocalFiles && (
+              <button 
+                className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border-t border-slate-200 dark:border-slate-700"
+                onClick={onClearLocalFiles}
+              >
+                清除本地文件
+              </button>
+            )}
           </div>
         </div>
         

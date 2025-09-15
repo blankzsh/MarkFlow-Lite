@@ -2,6 +2,15 @@ import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/default.css'
 import DOMPurify from 'dompurify'
+import mk from 'markdown-it-katex'
+import 'katex/dist/katex.min.css'
+import abbr from 'markdown-it-abbr'
+import deflist from 'markdown-it-deflist'
+import footnote from 'markdown-it-footnote'
+import ins from 'markdown-it-ins'
+import mark from 'markdown-it-mark'
+import sub from 'markdown-it-sub'
+import sup from 'markdown-it-sup'
 
 // 高亮函数
 const highlight = function (str: string, lang: string, md: MarkdownIt): string {
@@ -27,6 +36,37 @@ const md: MarkdownIt = new MarkdownIt({
   }
 })
 
+// 添加插件
+md.use(abbr)
+  .use(deflist)
+  .use(footnote)
+  .use(ins)
+  .use(mark)
+  .use(sub)
+  .use(sup)
+  .use(mk, {
+    "throwOnError": false,
+    "errorColor": "#cc0000"
+  })
+
+// 添加mermaid代码块支持
+const defaultFenceRenderer = md.renderer.rules.fence || function (tokens, idx, options, env, self) {
+  return self.renderToken(tokens, idx, options)
+}
+
+md.renderer.rules.fence = function (tokens, idx, options, env, self) {
+  const token = tokens[idx]
+  const code = token.content.trim()
+  
+  // 检查是否是mermaid代码块
+  if (token.info === 'mermaid') {
+    return `<div class="mermaid">${code}</div>`
+  }
+  
+  // 使用默认渲染器
+  return defaultFenceRenderer(tokens, idx, options, env, self)
+}
+
 export function renderMarkdown(markdown: string): string {
   try {
     // 渲染 Markdown
@@ -35,8 +75,8 @@ export function renderMarkdown(markdown: string): string {
     // 使用 DOMPurify 进行安全清理
     html = DOMPurify.sanitize(html, {
       // 允许代码相关的标签和类
-      ADD_TAGS: ['iframe'],
-      ADD_ATTR: ['class', 'target']
+      ADD_TAGS: ['iframe', 'math', 'semantics', 'mrow', 'mi', 'mn', 'mo', 'mtext', 'mspace', 'ms', 'annotation', 'svg', 'path', 'g', 'polygon', 'polyline', 'rect', 'circle', 'ellipse', 'line', 'text', 'tspan', 'textPath', 'use'],
+      ADD_ATTR: ['class', 'target', 'xmlns', 'encoding', 'display', 'alttext', 'd', 'fill', 'stroke', 'stroke-width', 'transform', 'x', 'y', 'cx', 'cy', 'r', 'width', 'height', 'viewBox', 'preserveAspectRatio', 'id']
     })
     
     return html

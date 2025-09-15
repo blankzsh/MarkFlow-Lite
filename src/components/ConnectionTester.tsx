@@ -32,7 +32,7 @@ const ConnectionTester: React.FC<ConnectionTesterProps> = ({ onTestComplete }) =
     <button
       onClick={testConnection}
       disabled={isTesting}
-      className={`px-3 py-1 rounded text-sm ${
+      className={`px-3 py-1 rounded text-sm transition-all duration-200 transform hover:scale-105 active:scale-95 ${
         isTesting 
           ? 'bg-gray-400 cursor-not-allowed' 
           : 'bg-blue-600 hover:bg-blue-700'

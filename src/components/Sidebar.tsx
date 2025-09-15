@@ -1,23 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import FileTree from './FileTree'
-import { fileManager } from '../utils/file-manager'
-
-interface FileInfo {
-  id: string
-  name: string
-  type: 'file' | 'folder'
-  path: string
-  modified: Date
-  size?: number
-}
-
-interface Connection {
-  id: string
-  name: string
-  type: 'local' | 's3' | 'webdav'
-  connected: boolean
-  lastSync?: Date
-}
+import { fileManager, FileInfo } from '../utils/file-manager'
 
 interface SidebarProps {
   onNewDocument: () => void
@@ -28,24 +11,42 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ onNewDocument, onOpenDocument, onFileSelect, onS3Connect, onWebDAVConnect }) => {
-  const [files, setFiles] = useState<FileInfo[]>([
-    { id: '1', name: '文档', type: 'folder', path: '/', modified: new Date() },
-    { id: '2', name: '未命名文档.md', type: 'file', path: '/未命名文档.md', modified: new Date() },
-    { id: '3', name: '项目计划.md', type: 'file', path: '/项目计划.md', modified: new Date() },
-    { id: '4', name: '笔记', type: 'folder', path: '/笔记', modified: new Date() },
-    { id: '5', name: '学习笔记.md', type: 'file', path: '/笔记/学习笔记.md', modified: new Date() },
-  ])
-  
-  const [connections, setConnections] = useState<Connection[]>([
+  const [files, setFiles] = useState<FileInfo[]>([])
+  const [connections, setConnections] = useState([
     { id: 's3-1', name: 'AWS S3 存储', type: 's3', connected: false },
     { id: 'webdav-1', name: 'WebDAV 服务器', type: 'webdav', connected: false },
     { id: 'local-1', name: '本地存储', type: 'local', connected: true }
   ])
   
   const [expandedFolders, setExpandedFolders] = useState<Record<string, boolean>>({
-    '1': true,
-    '4': true
+    'local-root': true
   })
+  
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  // 加载文件列表
+  useEffect(() => {
+    loadFileList()
+  }, [])
+
+  // 监听文件创建事件
+  useEffect(() => {
+    const handleFileCreated = () => {
+      loadFileList()
+    }
+
+    const handleFilesCleared = () => {
+      loadFileList()
+    }
+
+    window.addEventListener('fileCreated', handleFileCreated)
+    window.addEventListener('filesCleared', handleFilesCleared)
+    
+    return () => {
+      window.removeEventListener('fileCreated', handleFileCreated)
+      window.removeEventListener('filesCleared', handleFilesCleared)
+    }
+  }, [])
 
   // 更新连接状态
   useEffect(() => {
@@ -67,6 +68,37 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewDocument, onOpenDocument, onFile
 
     updateConnectionStatus();
   }, []);
+
+  // 加载文件列表（带防抖）
+  const loadFileList = async () => {
+    if (isLoading) {
+      return;
+    }
+    
+    setIsLoading(true);
+    try {
+      // 添加一个小延迟避免过于频繁的调用
+      await new Promise(resolve => setTimeout(resolve, 50));
+      const fileList = await fileManager.listFiles('/')
+      setFiles(fileList)
+    } catch (error) {
+      console.error('加载文件列表失败:', error)
+      // 如果加载失败，使用空列表
+      setFiles([])
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  // 新建文档
+  const handleNewDocument = () => {
+    // 调用父组件的onNewDocument函数
+    onNewDocument()
+    // 等待一段时间确保文件创建完成，然后更新文件列表
+    setTimeout(() => {
+      loadFileList()
+    }, 100)
+  }
 
   const handleFolderToggle = (folderId: string) => {
     setExpandedFolders(prev => ({
@@ -99,18 +131,13 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewDocument, onOpenDocument, onFile
       conn.id === connectionId ? { ...conn, connected: false } : conn
     ));
     
-    // 刷新文件列表
-    refreshFileList();
+    // 重新加载本地文件列表
+    loadFileList();
   }
 
   const handleRefresh = (connectionId: string) => {
     // 刷新文件列表
-    refreshFileList();
-  }
-
-  const refreshFileList = () => {
-    // 在实际应用中，这里会从云存储获取最新的文件列表
-    console.log('刷新文件列表');
+    loadFileList();
   }
 
   const handleCreateFolder = (parentId: string) => {
@@ -119,19 +146,66 @@ const Sidebar: React.FC<SidebarProps> = ({ onNewDocument, onOpenDocument, onFile
   }
 
   const handleDelete = (itemId: string, type: 'file' | 'folder') => {
-    // 模拟删除操作
-    console.log(`删除 ${type} ${itemId}`)
+    // 删除文件
+    if (type === 'file') {
+      // 确认删除
+      const file = files.find(f => f.path === itemId);
+      if (file && !window.confirm(`确定要删除文件 "${file.name}" 吗？`)) {
+        return;
+      }
+      
+      fileManager.deleteFile(itemId)
+        .then(() => {
+          // 重新加载文件列表
+          loadFileList()
+        })
+        .catch(error => {
+          console.error('删除文件失败:', error)
+          alert('删除文件失败')
+        })
+    }
+  }
+
+  // 处理文件拖拽
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    const files = e.dataTransfer.files;
+    
+    if (files.length > 0) {
+      const file = files[0];
+      const reader = new FileReader();
+      
+      reader.onload = (event) => {
+        const content = event.target?.result as string;
+        if (content) {
+          // 创建本地文件
+          const newFile = fileManager.createLocalFile(file.name, content);
+          // 重新加载文件列表
+          loadFileList();
+        }
+      };
+      
+      reader.readAsText(file);
+    }
+  }
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
   }
 
   return (
-    <div className="w-72 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col h-full shadow-lg">
+    <div 
+      className="w-72 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col h-full shadow-lg"
+      onDrop={handleDrop}
+      onDragOver={handleDragOver}
+    >
       <FileTree
         files={files}
         connections={connections}
         onFileSelect={onFileSelect}
         onFolderToggle={handleFolderToggle}
         expandedFolders={expandedFolders}
-        onNewDocument={onNewDocument}
+        onNewDocument={handleNewDocument}
         onOpenDocument={onOpenDocument}
         onConnect={handleConnect}
         onDisconnect={handleDisconnect}

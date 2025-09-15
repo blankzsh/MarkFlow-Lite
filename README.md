@@ -53,6 +53,7 @@ npm run preview
 - **代码高亮**: Highlight.js
 - **样式设计**: Tailwind CSS + @tailwindcss/typography
 - **数学公式**: MathJax (通过 markdown-it-mathjax3)
+- **流程图支持**: Mermaid
 - **构建工具**: Vite
 - **部署平台**: GitHub Pages / Vercel / Netlify
 
@@ -97,11 +98,39 @@ MarkFlow Lite 支持多种云存储后端：
 - 数学公式 (LaTeX)
 - 流程图 (Mermaid)
 
+### Mermaid 流程图使用
+
+支持多种 Mermaid 图表类型：
+
+```markdown
+```mermaid
+graph TD
+  A[开始] --> B[处理]
+  B --> C[结束]
+```
+```
+
+支持的图表类型：
+- 流程图 (Flowchart)
+- 时序图 (Sequence Diagram)
+- 甘特图 (Gantt Diagram)
+- 类图 (Class Diagram)
+- 状态图 (State Diagram)
+
 ## 📤 导出功能
 
 - **PDF 导出** - 将文档导出为 PDF 格式
 - **HTML 导出** - 导出为独立的 HTML 文件
 - **Markdown 导出** - 导出原始 Markdown 文件
+
+## 🐛 已知问题修复
+
+### 最近修复的问题
+
+- 修复了流程图渲染过大问题，优化了图表尺寸控制
+- 解决了代码块被表格遮挡的问题
+- 修复了流程图渲染后页面底部出现大片空白的问题
+- 优化了所有内容在同一层正确显示的顺序
 
 ## 🔧 部署
 
@@ -148,6 +177,7 @@ npm run build
 - [Highlight.js](https://highlightjs.org/) - 代码语法高亮
 - [Tailwind CSS](https://tailwindcss.com/) - CSS 框架
 - [MathJax](https://www.mathjax.org/) - 数学公式渲染
+- [Mermaid](https://mermaid-js.github.io/) - 流程图渲染
 - [Vite](https://vitejs.dev/) - 前端构建工具
 
 ## 📞 联系

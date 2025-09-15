@@ -60,6 +60,8 @@ pre {
   overflow: auto;
   padding: 1rem;
   margin: 1rem 0;
+  background: #f1f5f9;
+  position: relative;
 }
 
 pre code {
@@ -84,6 +86,8 @@ table {
   border-collapse: collapse;
   width: 100%;
   margin: 1rem 0;
+  background: white;
+  position: relative;
 }
 
 th, td {
@@ -103,4 +107,101 @@ th {
 
 .dark th {
   background-color: #1e293b;
+}
+
+/* 弹窗动画样式 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.2s ease-out forwards;
+}
+
+/* 按钮点击动画 */
+button:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* 修复prose样式可能导致的额外空白 */
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose > :last-child {
+  margin-bottom: 0;
+}
+
+/* 确保预览区域没有额外的空白 */
+.preview-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.preview-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* 移除可能的额外空白 */
+div:empty {
+  display: none;
+}
+
+/* 确保没有额外的margin */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 修复mermaid图表显示问题 */
+.mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.mermaid svg {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  position: static;
+  max-height: 400px;
+}
+
+/* 确保所有内容按文档流顺序显示 */
+.prose * {
+  position: static;
+  z-index: auto;
 }
