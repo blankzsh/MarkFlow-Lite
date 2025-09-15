@@ -76,7 +76,9 @@ export function renderMarkdown(markdown: string): string {
     html = DOMPurify.sanitize(html, {
       // 允许代码相关的标签和类
       ADD_TAGS: ['iframe', 'math', 'semantics', 'mrow', 'mi', 'mn', 'mo', 'mtext', 'mspace', 'ms', 'annotation', 'svg', 'path', 'g', 'polygon', 'polyline', 'rect', 'circle', 'ellipse', 'line', 'text', 'tspan', 'textPath', 'use'],
-      ADD_ATTR: ['class', 'target', 'xmlns', 'encoding', 'display', 'alttext', 'd', 'fill', 'stroke', 'stroke-width', 'transform', 'x', 'y', 'cx', 'cy', 'r', 'width', 'height', 'viewBox', 'preserveAspectRatio', 'id']
+      ADD_ATTR: ['class', 'target', 'xmlns', 'encoding', 'display', 'alttext', 'd', 'fill', 'stroke', 'stroke-width', 'transform', 'x', 'y', 'cx', 'cy', 'r', 'width', 'height', 'viewBox', 'preserveAspectRatio', 'id'],
+      // 特别允许mermaid相关的类
+      ALLOWED_CLASS: ['mermaid']
     })
     
     return html

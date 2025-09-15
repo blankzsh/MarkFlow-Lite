@@ -86,6 +86,24 @@ const Preview: React.FC<PreviewProps> = ({ markdown, isDarkMode, className = '' 
               // 获取原始的mermaid代码
               const graphDefinition = element.textContent || ''
               
+              // 检查是否是有效的mermaid图表定义
+              if (!graphDefinition || graphDefinition.trim().length === 0) {
+                console.warn('跳过空的mermaid图表定义')
+                continue
+              }
+              
+              // 检查是否包含CSS样式（可能是误识别的元素）
+              if (graphDefinition.includes('{') && graphDefinition.includes('}')) {
+                // 简单检查是否是CSS样式而不是mermaid定义
+                const isCSS = graphDefinition.trim().startsWith('.') || 
+                             graphDefinition.trim().startsWith('#') || 
+                             graphDefinition.trim().startsWith('@')
+                if (isCSS) {
+                  console.warn('跳过可能的CSS样式内容:', graphDefinition.substring(0, 50) + '...')
+                  continue
+                }
+              }
+              
               // 使用render方法渲染图表
               const { svg } = await mermaid.render(id, graphDefinition)
               
