@@ -379,7 +379,7 @@ function App() {
   }
 
   return (
-    <div className={`flex flex-col h-screen ${isDarkMode ? 'dark' : ''}`}>
+    <div className={`flex flex-col h-screen ${isDarkMode ? 'dark' : ''}`} role="main">
       <Header 
         isDarkMode={isDarkMode} 
         setIsDarkMode={setIsDarkMode} 
@@ -389,7 +389,7 @@ function App() {
         onClearLocalFiles={handleClearLocalFiles}
         onCopyMarkdown={handleCopyMarkdown}
       />
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden" role="region" aria-label="编辑器区域">
         <Sidebar 
           onNewDocument={handleNewDocument}
           onOpenDocument={handleOpenDocument}

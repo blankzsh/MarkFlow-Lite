@@ -103,6 +103,6 @@ graph TD
 ## 更多信息
 
 - [GitHub 仓库](https://github.com/blankzsh/markflow-lite)
-- [使用文档](https://docs.example.com)
-- [反馈问题](https://issues.example.com)
+- [开发日志](https://github.com/blankzsh/MarkFlow-Lite/blob/main/CHANGELOG.md)
+- [反馈问题](https://github.com/blankzsh/MarkFlow-Lite/issues)
 `
