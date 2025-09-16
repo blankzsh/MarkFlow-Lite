@@ -31,6 +31,23 @@ MarkFlow Lite is a pure front-end Markdown editor that runs entirely in the brow
 - ⌨️ **Shortcut Operations** - Supports common shortcuts (bold, italic, title insertion, etc.)
 - 📱 **Responsive Design** - Supports desktop, tablet, and mobile access
 
+## 📸 Interface Preview
+
+<div align="center">
+  <img src="asset/images/screenshot-editor.png" alt="MarkFlow Lite Editor Interface" width="800" />
+  <p><em>MarkFlow Lite Editor Interface - Real-time editing and preview functionality</em></p>
+</div>
+
+<div align="center">
+  <img src="asset/images/screenshot-preview.png" alt="MarkFlow Lite Preview Interface" width="800" />
+  <p><em>MarkFlow Lite Preview Interface - Supports mathematical formulas and flowchart rendering</em></p>
+</div>
+
+<div align="center">
+  <img src="asset/images/screenshot-dark-mode.png" alt="MarkFlow Lite Dark Theme" width="800" />
+  <p><em>MarkFlow Lite Dark Theme - Comfortable nighttime editing experience</em></p>
+</div>
+
 ## 🚀 Quick Start
 
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)

@@ -31,6 +31,23 @@ MarkFlow Lite ist ein reiner Frontend-Markdown-Editor, der vollständig im Brows
 - ⌨️ **Tastenkombinationen** - Unterstützt gängige Tastenkombinationen (Fett, Kursiv, Titel einfügen, etc.)
 - 📱 **Responsives Design** - Unterstützt Desktop-, Tablet- und Mobilzugriff
 
+## 📸 Oberflächenvorschau
+
+<div align="center">
+  <img src="asset/images/screenshot-editor.png" alt="MarkFlow Lite Editor-Oberfläche" width="800" />
+  <p><em>MarkFlow Lite Editor-Oberfläche - Echtzeit-Bearbeitung und Vorschaufunktion</em></p>
+</div>
+
+<div align="center">
+  <img src="asset/images/screenshot-preview.png" alt="MarkFlow Lite Vorschau-Oberfläche" width="800" />
+  <p><em>MarkFlow Lite Vorschau-Oberfläche - Unterstützt mathematische Formeln und Flussdiagramm-Rendering</em></p>
+</div>
+
+<div align="center">
+  <img src="asset/images/screenshot-dark-mode.png" alt="MarkFlow Lite Dunkles Theme" width="800" />
+  <p><em>MarkFlow Lite Dunkles Theme - Komfortable Nachbearbeitungserfahrung</em></p>
+</div>
+
 ## 🚀 Schnellstart
 
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)

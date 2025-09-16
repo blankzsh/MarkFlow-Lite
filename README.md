@@ -31,6 +31,23 @@ MarkFlow Lite 是一个完全运行在浏览器中的纯前端 Markdown 编辑�
 - ⌨️ **快捷操作** - 支持常用快捷键（加粗、斜体、标题插入等）
 - 📱 **响应式设计** - 支持桌面、平板、手机访问
 
+## 📸 界面预览
+
+<div align="center">
+  <img src="asset/images/screenshot-editor.png" alt="MarkFlow Lite 编辑器界面" width="800" />
+  <p><em>MarkFlow Lite 编辑器界面 - 实时编辑和预览功能</em></p>
+</div>
+
+<div align="center">
+  <img src="asset/images/screenshot-preview.png" alt="MarkFlow Lite 预览界面" width="800" />
+  <p><em>MarkFlow Lite 预览界面 - 支持数学公式和流程图渲染</em></p>
+</div>
+
+<div align="center">
+  <img src="asset/images/screenshot-dark-mode.png" alt="MarkFlow Lite 深色主题" width="800" />
+  <p><em>MarkFlow Lite 深色主题 - 舒适的夜间编辑体验</em></p>
+</div>
+
 ## 🚀 快速开始
 
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
