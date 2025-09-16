@@ -4,6 +4,14 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+<p align="center">
+  <a href="README_en.md">English</a> •
+  <a href="README_ja.md">日本語</a> •
+  <a href="README_es.md">Español</a> •
+  <a href="README_pt.md">Português</a> •
+  <a href="README_de.md">Deutsch</a>
+</p>
+
 MarkFlow Lite 是一个完全运行在浏览器中的纯前端 Markdown 编辑器，无需服务器支持，开箱即用，支持实时编辑、双向预览、本地保存和内容分享。
 
 ## 🌟 特性
