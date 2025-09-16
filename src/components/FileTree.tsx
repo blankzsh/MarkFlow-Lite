@@ -6,7 +6,7 @@ interface FileInfo {
   type: 'file' | 'folder'
   path: string
   modified: Date
-  size?: number
+  size: number
 }
 
 interface Connection {

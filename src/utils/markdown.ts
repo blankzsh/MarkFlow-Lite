@@ -31,7 +31,7 @@ const md: MarkdownIt = new MarkdownIt({
   linkify: true,
   typographer: true,
   quotes: '“”‘’',
-  highlight: function (str, lang) {
+  highlight: function (str: string, lang: string) {
     return highlight(str, lang, md)
   }
 })
@@ -50,11 +50,11 @@ md.use(abbr)
   })
 
 // 添加mermaid代码块支持
-const defaultFenceRenderer = md.renderer.rules.fence || function (tokens, idx, options, env, self) {
+const defaultFenceRenderer = md.renderer.rules.fence || function (tokens: any[], idx: number, options: any, env: any, self: any) {
   return self.renderToken(tokens, idx, options)
 }
 
-md.renderer.rules.fence = function (tokens, idx, options, env, self) {
+md.renderer.rules.fence = function (tokens: any[], idx: number, options: any, env: any, self: any) {
   const token = tokens[idx]
   const code = token.content.trim()
   
@@ -77,8 +77,6 @@ export function renderMarkdown(markdown: string): string {
       // 允许代码相关的标签和类
       ADD_TAGS: ['iframe', 'math', 'semantics', 'mrow', 'mi', 'mn', 'mo', 'mtext', 'mspace', 'ms', 'annotation', 'svg', 'path', 'g', 'polygon', 'polyline', 'rect', 'circle', 'ellipse', 'line', 'text', 'tspan', 'textPath', 'use'],
       ADD_ATTR: ['class', 'target', 'xmlns', 'encoding', 'display', 'alttext', 'd', 'fill', 'stroke', 'stroke-width', 'transform', 'x', 'y', 'cx', 'cy', 'r', 'width', 'height', 'viewBox', 'preserveAspectRatio', 'id'],
-      // 特别允许mermaid相关的类
-      ALLOWED_CLASS: ['mermaid']
     })
     
     return html

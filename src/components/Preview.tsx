@@ -41,11 +41,8 @@ const Preview: React.FC<PreviewProps> = ({ markdown, isDarkMode, className = '' 
             fontFamily: 'inherit',
             // 限制图表的最大尺寸
             maxTextSize: 30000,
-            // 设置通用配置
-            useMaxWidth: true,
             // 设置 flowchart 图表的默认配置
             flowchart: {
-              useMaxWidth: true,
               htmlLabels: true,
               curve: 'basis',
               nodeSpacing: 30,
@@ -63,16 +60,14 @@ const Preview: React.FC<PreviewProps> = ({ markdown, isDarkMode, className = '' 
               noteMargin: 5,
               messageMargin: 20,
               mirrorActors: true,
-              bottomMarginAdj: 1,
-              useMaxWidth: true
+              bottomMarginAdj: 1
             },
             // 设置 gantt 图表的默认配置
             gantt: {
               titleTopMargin: 10,
               barHeight: 20,
               gridLineStartPadding: 10,
-              fontSize: 11,
-              useMaxWidth: true
+              fontSize: 11
             }
           })
           

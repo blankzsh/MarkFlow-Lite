@@ -3,7 +3,8 @@ import Editor from './components/Editor'
 import Preview from './components/Preview'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
-import { fileManager, FileInfo } from './utils/file-manager'
+import { fileManager } from './utils/file-manager'
+import { FileInfo } from './utils/cloud-storage-service'
 import { initialMarkdown } from './utils/constants'
 import S3ConfigModal from './components/modals/S3ConfigModal'
 import WebDAVConfigModal from './components/modals/WebDAVConfigModal'
@@ -305,15 +306,15 @@ function App() {
                 logging: false
               },
               jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            }
+            } as any // 添加类型断言以解决类型问题
             
             // 生成并下载 PDF
             html2pdf().set(options).from(element).save()
-          } catch (error) {
+          } catch (error: any) {
             console.error('PDF导出失败:', error)
             alert('PDF导出失败: ' + (error.message || '未知错误'))
           }
-        }).catch(error => {
+        }).catch((error: any) => {
           console.error('导入html2pdf.js失败:', error)
           alert('PDF导出失败，请使用浏览器打印功能')
         })

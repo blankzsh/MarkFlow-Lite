@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   FaMoon, 
   FaSun, 
@@ -10,6 +10,7 @@ import {
   FaGithub,
   FaCopy
 } from 'react-icons/fa'
+import LanguageSwitcher from './LanguageSwitcher'
 
 interface HeaderProps {
   isDarkMode: boolean
@@ -30,6 +31,23 @@ const Header: React.FC<HeaderProps> = ({
   onClearLocalFiles,
   onCopyMarkdown
 }) => {
+  const [isExportOpen, setIsExportOpen] = useState(false);
+  const exportRef = useRef<HTMLDivElement>(null);
+
+  // 点击外部关闭导出下拉菜单
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (exportRef.current && !exportRef.current.contains(event.target as Node)) {
+        setIsExportOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <header className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-4 py-2 flex items-center justify-between">
       <div className="flex items-center space-x-2">
@@ -64,49 +82,67 @@ const Header: React.FC<HeaderProps> = ({
           </button>
         </div>
         
-        <div className="relative group">
+        <div className="relative" ref={exportRef}>
           <button 
             className="p-2 rounded-md bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
             title="导出"
+            onClick={() => setIsExportOpen(!isExportOpen)}
           >
             <FaFileExport />
           </button>
-          <div className="absolute right-0 mt-1 w-32 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-md shadow-lg z-10 hidden group-hover:block">
-            <button 
-              className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
-              onClick={() => onExport('html')}
-            >
-              导出为 HTML
-            </button>
-            <button 
-              className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
-              onClick={() => onExport('md')}
-            >
-              导出为 Markdown
-            </button>
-            {onCopyMarkdown && (
+          {isExportOpen && (
+            <div className="absolute right-0 mt-1 w-32 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-md shadow-lg z-20">
               <button 
                 className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
-                onClick={onCopyMarkdown}
+                onClick={() => {
+                  onExport('html');
+                  setIsExportOpen(false);
+                }}
               >
-                复制 Markdown
+                导出为 HTML
               </button>
-            )}
-            <button 
-              className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
-              onClick={() => onExport('pdf')}
-            >
-              导出为 PDF
-            </button>
-            {onClearLocalFiles && (
               <button 
-                className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border-t border-slate-200 dark:border-slate-700"
-                onClick={onClearLocalFiles}
+                className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+                onClick={() => {
+                  onExport('md');
+                  setIsExportOpen(false);
+                }}
               >
-                清除本地文件
+                导出为 Markdown
               </button>
-            )}
-          </div>
+              {onCopyMarkdown && (
+                <button 
+                  className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+                  onClick={() => {
+                    onCopyMarkdown();
+                    setIsExportOpen(false);
+                  }}
+                >
+                  复制 Markdown
+                </button>
+              )}
+              <button 
+                className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+                onClick={() => {
+                  onExport('pdf');
+                  setIsExportOpen(false);
+                }}
+              >
+                导出为 PDF
+              </button>
+              {onClearLocalFiles && (
+                <button 
+                  className="block w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border-t border-slate-200 dark:border-slate-700"
+                  onClick={() => {
+                    onClearLocalFiles();
+                    setIsExportOpen(false);
+                  }}
+                >
+                  清除本地文件
+                </button>
+              )}
+            </div>
+          )}
         </div>
         
         <button 
@@ -123,6 +159,8 @@ const Header: React.FC<HeaderProps> = ({
         >
           {isDarkMode ? <FaSun /> : <FaMoon />}
         </button>
+        
+        <LanguageSwitcher />
         
         <a 
           href="https://github.com/blankzsh/markflow-lite" 

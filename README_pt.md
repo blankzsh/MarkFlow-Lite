@@ -3,6 +3,11 @@
 > Um editor Markdown online de front-end puro
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub last commit](https://img.shields.io/github/last-commit/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/commits/main)
+[![GitHub issues](https://img.shields.io/github/issues/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/pulls)
+[![GitHub stars](https://img.shields.io/github/stars/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/network/members)
 
 <p align="center">
   <a href="README.md">中文</a> •
@@ -12,21 +17,24 @@
   <a href="README_de.md">Deutsch</a>
 </p>
 
-MarkFlow Lite é um editor Markdown de front-end puro que funciona inteiramente no navegador, sem necessidade de servidor e pronto para usar, com suporte para edição em tempo real, pré-visualização dupla, salvamento local e compartilhamento de conteúdo.
+MarkFlow Lite é um editor Markdown de front-end puro que roda inteiramente no navegador, não requer suporte de servidor e está pronto para usar, com suporte para edição em tempo real, pré-visualização dupla, salvamento local e compartilhamento de conteúdo.
 
 ## 🌟 Recursos
 
 - ✍️ **Edição em tempo real** - Suporta sintaxe Markdown padrão (incluindo tabelas, blocos de código, listas, etc.)
-- 👁️ **Pré-visualização em tempo real** - Veja enquanto escreve, com suporte para fórmulas matemáticas e renderização de fluxogramas
+- 👁️ **Pré-visualização em tempo real** - Veja enquanto escreve, suporta fórmulas matemáticas e renderização de fluxogramas
 - 💾 **Armazenamento local** - Salva automaticamente rascunhos no armazenamento local do navegador
 - 📄 **Exportação de arquivos** - Suporta exportação para formatos PDF, HTML, Markdown
-- 📂 **Gerenciamento de arquivos** - Suporta criação de novos documentos e abertura de arquivos Markdown locais
+- 📂 **Gerenciamento de arquivos** - Suporta criação de novos documentos, abertura de arquivos Markdown locais
 - 🔗 **Compartilhamento de conteúdo** - Gera links únicos, conteúdo pode ser compartilhado via parâmetros de URL
-- 🎨 **Troca de tema** - Fornece temas escuro/claro, adaptado a diferentes ambientes de leitura
+- 🎨 **Troca de tema** - Fornece temas escuro/claro, adaptados a diferentes ambientes de leitura
 - ⌨️ **Operações de atalho** - Suporta atalhos comuns (negrito, itálico, inserção de título, etc.)
-- 📱 **Design responsivo** - Suporta desktop, tablet e acesso móvel
+- 📱 **Design responsivo** - Suporta acesso em desktop, tablet e dispositivos móveis
 
 ## 🚀 Início rápido
+
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
 
 ### Uso online
 
@@ -35,26 +43,32 @@ Visite [MarkFlow Lite](https://editor.currso.com) diretamente para começar a us
 ### Desenvolvimento local
 
 ```bash
-# Clonar o projeto
+# Clone o projeto
 git clone https://github.com/blankzsh/markflow-lite.git
 
-# Entrar no diretório do projeto
+# Entre no diretório do projeto
 cd markflow-lite
 
-# Instalar dependências
+# Instale as dependências
 npm install
 
-# Iniciar o servidor de desenvolvimento
+# Inicie o servidor de desenvolvimento
 npm run dev
 
-# Construir para produção
+# Construa para produção
 npm run build
 
-# Pré-visualizar a construção de produção
+# Pré-visualize a construção de produção
 npm run preview
 ```
 
 ## 🛠️ Stack tecnológica
+
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)](https://markdown-it.github.io/)
 
 - **Framework de desenvolvimento**: React + TypeScript + Vite
 - **Análise de Markdown**: markdown-it
@@ -102,7 +116,7 @@ Através do explorador de arquivos, você pode:
 - Blocos de código e código inline
 - Citações em bloco
 - Tabelas
-- Linhas horizontais
+- Regras horizontais
 - Fórmulas matemáticas (LaTeX)
 - Fluxogramas (Mermaid)
 
@@ -127,9 +141,9 @@ Tipos de gráficos suportados:
 
 ## 📤 Funções de exportação
 
-- **Exportação PDF** - Exporta documentos para formato PDF
-- **Exportação HTML** - Exporta para arquivos HTML independentes
-- **Exportação Markdown** - Exporta arquivos Markdown originais
+- **Exportação PDF** - Exporte documentos para o formato PDF
+- **Exportação HTML** - Exporte para arquivos HTML independentes
+- **Exportação Markdown** - Exporte arquivos Markdown originais
 
 ## 🐛 Problemas corrigidos
 
@@ -137,12 +151,15 @@ Tipos de gráficos suportados:
 
 - Corrigido o problema de renderização de fluxogramas muito grandes, otimizado o controle de tamanho dos gráficos
 - Resolvido o problema de blocos de código sendo obscurecidos por tabelas
-- Corrigido grandes espaços em branco que apareciam na parte inferior da página após a renderização de fluxogramas
+- Corrigido grandes espaços em branco aparecendo na parte inferior da página após a renderização de fluxogramas
 - Otimizado a ordem de exibição correta de todo o conteúdo na mesma camada
+- Removida a funcionalidade PWA e configurações relacionadas, resolvidos problemas de compilação
 
 ## 🔧 Deploy
 
 ### Deploy no Vercel
+
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
 ```bash
 npm run build
@@ -151,16 +168,20 @@ vercel --prod
 
 ### Deploy no Netlify
 
+[![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://www.netlify.com/)
+
 ```bash
 npm run build
-# Upload do diretório dist para o Netlify
+# Faça upload do diretório dist para o Netlify
 ```
 
 ### Deploy no GitHub Pages
 
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=github&logoColor=white)](https://pages.github.com/)
+
 ```bash
 npm run build
-# Push do diretório dist para a branch gh-pages
+# Envie o diretório dist para o branch gh-pages
 ```
 
 ## 🤝 Contribuição
@@ -170,9 +191,9 @@ Bem-vindo para enviar Issues e Pull Requests para ajudar a melhorar o MarkFlow L
 ### Processo de desenvolvimento
 
 1. Faça fork do projeto
-2. Crie uma branch de feature (`git checkout -b feature/AmazingFeature`)
-3. Commit das mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
+2. Crie um branch de funcionalidade (`git checkout -b feature/AmazingFeature`)
+3. Faça commit das alterações (`git commit -m 'Add some AmazingFeature'`)
+4. Faça push para o branch (`git push origin feature/AmazingFeature`)
 5. Abra um Pull Request
 
 ## 📄 Licença
@@ -186,10 +207,12 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 - [Tailwind CSS](https://tailwindcss.com/) - Framework CSS
 - [MathJax](https://www.mathjax.org/) - Renderização de fórmulas matemáticas
 - [Mermaid](https://mermaid-js.github.io/) - Renderização de fluxogramas
-- [Vite](https://vitejs.dev/) - Ferramenta de build front-end
+- [Vite](https://vitejs.dev/) - Ferramenta de construção front-end
 
 ## 📞 Contato
 
 URL do projeto: [https://github.com/blankzsh/markflow-lite](https://github.com/blankzsh/markflow-lite)
 
-Se tiver dúvidas ou sugestões, por favor envie um Issue ou contate o mantenedor do projeto.
+**Email para feedback**: [shell7@petalmail.com](mailto:shell7@petalmail.com)
+
+Se você tiver alguma dúvida ou sugestão, por favor envie um Issue ou entre em contato com o mantenedor do projeto via email. Nós valorizamos o feedback de cada usuário!

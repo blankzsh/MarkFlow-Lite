@@ -3,6 +3,11 @@
 > 一个纯前端在线 Markdown 编辑器
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub last commit](https://img.shields.io/github/last-commit/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/commits/main)
+[![GitHub issues](https://img.shields.io/github/issues/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/pulls)
+[![GitHub stars](https://img.shields.io/github/stars/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/network/members)
 
 <p align="center">
   <a href="README_en.md">English</a> •
@@ -27,6 +32,9 @@ MarkFlow Lite 是一个完全运行在浏览器中的纯前端 Markdown 编辑�
 - 📱 **响应式设计** - 支持桌面、平板、手机访问
 
 ## 🚀 快速开始
+
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
 
 ### 在线使用
 
@@ -55,6 +63,12 @@ npm run preview
 ```
 
 ## 🛠️ 技术栈
+
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)](https://markdown-it.github.io/)
 
 - **开发框架**: React + TypeScript + Vite
 - **Markdown 解析**: markdown-it
@@ -139,10 +153,13 @@ graph TD
 - 解决了代码块被表格遮挡的问题
 - 修复了流程图渲染后页面底部出现大片空白的问题
 - 优化了所有内容在同一层正确显示的顺序
+- 移除了PWA功能及相关配置，解决了构建问题
 
 ## 🔧 部署
 
 ### 部署到 Vercel
+
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
 ```bash
 npm run build
@@ -151,12 +168,16 @@ vercel --prod
 
 ### 部署到 Netlify
 
+[![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://www.netlify.com/)
+
 ```bash
 npm run build
 # 上传 dist 目录到 Netlify
 ```
 
 ### 部署到 GitHub Pages
+
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=github&logoColor=white)](https://pages.github.com/)
 
 ```bash
 npm run build
@@ -192,4 +213,6 @@ npm run build
 
 项目地址: [https://github.com/blankzsh/markflow-lite](https://github.com/blankzsh/markflow-lite)
 
-如有任何问题或建议，请提交 Issue 或联系项目维护者。
+**邮箱反馈**: [shell7@petalmail.com](mailto:shell7@petalmail.com)
+
+如有任何问题或建议，请提交 Issue 或通过邮箱联系项目维护者。我们重视每一个用户的反馈！

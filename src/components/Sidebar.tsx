@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import FileTree from './FileTree'
-import { fileManager, FileInfo } from '../utils/file-manager'
+import { fileManager } from '../utils/file-manager'
+import { FileInfo } from '../utils/cloud-storage-service'
 
 interface SidebarProps {
   onNewDocument: () => void
@@ -13,9 +14,9 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ onNewDocument, onOpenDocument, onFileSelect, onS3Connect, onWebDAVConnect }) => {
   const [files, setFiles] = useState<FileInfo[]>([])
   const [connections, setConnections] = useState([
-    { id: 's3-1', name: 'AWS S3 存储', type: 's3', connected: false },
-    { id: 'webdav-1', name: 'WebDAV 服务器', type: 'webdav', connected: false },
-    { id: 'local-1', name: '本地存储', type: 'local', connected: true }
+    { id: 's3-1', name: 'AWS S3 存储', type: 's3' as 's3' | 'webdav' | 'local', connected: false },
+    { id: 'webdav-1', name: 'WebDAV 服务器', type: 'webdav' as 's3' | 'webdav' | 'local', connected: false },
+    { id: 'local-1', name: '本地存储', type: 'local' as 's3' | 'webdav' | 'local', connected: true }
   ])
   
   const [expandedFolders, setExpandedFolders] = useState<Record<string, boolean>>({

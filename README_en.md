@@ -3,6 +3,11 @@
 > A pure front-end online Markdown editor
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub last commit](https://img.shields.io/github/last-commit/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/commits/main)
+[![GitHub issues](https://img.shields.io/github/issues/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/pulls)
+[![GitHub stars](https://img.shields.io/github/stars/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/blankzsh/markflow-lite)](https://github.com/blankzsh/markflow-lite/network/members)
 
 <p align="center">
   <a href="README.md">中文</a> •
@@ -27,6 +32,9 @@ MarkFlow Lite is a pure front-end Markdown editor that runs entirely in the brow
 - 📱 **Responsive Design** - Supports desktop, tablet, and mobile access
 
 ## 🚀 Quick Start
+
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
 
 ### Online Use
 
@@ -55,6 +63,12 @@ npm run preview
 ```
 
 ## 🛠️ Tech Stack
+
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)](https://markdown-it.github.io/)
 
 - **Development Framework**: React + TypeScript + Vite
 - **Markdown Parsing**: markdown-it
@@ -139,10 +153,13 @@ Supported chart types:
 - Solved the issue of code blocks being obscured by tables
 - Fixed large blank spaces appearing at the bottom of the page after flowchart rendering
 - Optimized the correct display order of all content on the same layer
+- Removed PWA functionality and related configurations, resolved build issues
 
 ## 🔧 Deployment
 
 ### Deploy to Vercel
+
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
 ```bash
 npm run build
@@ -151,12 +168,16 @@ vercel --prod
 
 ### Deploy to Netlify
 
+[![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://www.netlify.com/)
+
 ```bash
 npm run build
 # Upload dist directory to Netlify
 ```
 
 ### Deploy to GitHub Pages
+
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=github&logoColor=white)](https://pages.github.com/)
 
 ```bash
 npm run build
@@ -192,4 +213,6 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 
 Project URL: [https://github.com/blankzsh/markflow-lite](https://github.com/blankzsh/markflow-lite)
 
-If you have any questions or suggestions, please submit an Issue or contact the project maintainer.
+**Email Feedback**: [shell7@petalmail.com](mailto:shell7@petalmail.com)
+
+If you have any questions or suggestions, please submit an Issue or contact the project maintainer via email. We value every user's feedback!

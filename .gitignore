@@ -36,3 +36,7 @@ diagnose-rendering.html
 plan.md
 html-test.html
 final-flowchart-test.md
+.claude/
+.gitignore
+docs/
+vercel.md
